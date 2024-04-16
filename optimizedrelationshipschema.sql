@@ -79,7 +79,6 @@ CREATE TABLE Matches_England (
     status VARCHAR(255),
     venue VARCHAR(255),
     winner VARCHAR(255),
-    teamData TEXT,
     score VARCHAR(255),
     competitionID INT,
     FOREIGN KEY (competitionID) REFERENCES Competitions(ID)
@@ -95,8 +94,6 @@ CREATE TABLE Events_England (
     matchID INT,
     eventID INT,
     subeventID INT,
-    eventName VARCHAR(255),
-    subeventName VARCHAR(255),
     tagID INT,
     playerID INT
     FOREIGN KEY (matchID) REFERENCES Matches_England(ID),
@@ -128,18 +125,31 @@ CREATE TABLE Player_Ranks (
     score INT,
     minutesPlayed INT,
     role VARCHAR(255),
-    FOREIGN KEY (playerID) REFERENCES Players(ID)
+    FOREIGN KEY (playerID) REFERENCES Players(ID),
+    jerseyNumber INT
 );
 
-CREATE TABLE Player_Games(
-    ID INT PRIMARY KEY,
-    firstName VARCHAR(255),
-    lastName VARCHAR(255),
-    birthDate DATE,
-    birthArea VARCHAR(255),
-    preferredFoot VARCHAR(50),
-    height INT,
-    minutesPlayed INT,
-    jerseyNumber INT
+CREATE TABLE Matches_Referees(
+    matchID INT,
+    refereeID INT,
+    PRIMARY KEY (matchID,refereeID),
+    FOREIGN KEY (matchID) REFERENCES Matches_England(ID),
+    FOREIGN KEY (refereeID) REFERENCES Referee(ID)
+)
 
+CREATE TABLE TeamsData(
+    matchID INT PRIMARY KEY,
+    team1formation VARCHAR(255),
+    team1scoreP INT,
+    team1scoreHT INT,
+    team1scoreET INT,
+    team2formation VARCHAR(255),
+    team2scoreP INT,
+    team2scoreHT INT,
+    team2scoreET INT
+    team1ID INT,
+    team2ID INT,
+    FOREIGN KEY (team1ID) REFERENCES Teams(ID),
+    FOREIGN KEY (team2ID) REFERENCES Teams(ID),
+    FOREIGN KEY (matchID) REFERENCES Matches_England(ID)
 )

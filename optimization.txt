@@ -14,5 +14,5 @@ Solution: drop this column and create a join table matches_referees with the mat
 5. The match table also has too many columns, it would be a good thought process to split this and improve query speeds
 Solution: Create another table  call it teamData, with matchID as the PK and the remaining columns as attributes, to get all attributes, simply join on matchID
 
-6. PlayerGame has too many attributes that are redudnant and can simply be found in the Players Table
-Solution: Drop the PlayerGame table, move kersey number attribute to PLayerRank
+6. PlayerGame has too many attributes that are redundant and can simply be found in the Players Table
+Solution: Drop the PlayerGame table, move jersey number attribute to PLayerRank
