@@ -16,3 +16,5 @@ Solution: Create another table  call it teamData, with matchID as the PK and the
 
 6. PlayerGame has too many attributes that are redundant and can simply be found in the Players Table
 Solution: Drop the PlayerGame table, move jersey number attribute to PLayerRank
+
+Another good design is to have the number of yellow cards, red cards and own goals in player rank to give a summary of player performance
