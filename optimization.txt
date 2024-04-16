@@ -1,0 +1,18 @@
+The few problems and optimizations to be made with the current ER diagram are as follows
+1. Event name and Sub event name in the events_england table is redundant because that information could be gotten from joining on the foreign key (eventid, subeventid)
+Solution: Drop both columns
+
+2. There is no need of teamId in the events table, it can be gotten from the player(s) involved in the event 
+Solution: drop teamID column
+
+3. The teamsData column stores a json format which is a text, this is bad design and defeats the purpose of having an SQL database, we also observe that most of the data can be found in the othee columns (ie team1., team2.)
+Solution: Drop teamsData column
+
+4. The matches table has a referees column that also stores a json format that implies a many to many relationship, again bad design
+Solution: drop this column and create a join table matches_referees with the match ID and referee ID as the FKs
+
+5. The match table also has too many columns, it would be a good thought process to split this and improve query speeds
+Solution: Create another table  call it teamData, with matchID as the PK and the remaining columns as attributes, to get all attributes, simply join on matchID
+
+6. PlayerGame has too many attributes that are redudnant and can simply be found in the Players Table
+Solution: Drop the PlayerGame table, move kersey number attribute to PLayerRank
