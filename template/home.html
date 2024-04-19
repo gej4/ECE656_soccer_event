@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Query Player Info</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 20px;
+        padding: 20px;
+    }
+    h1, h2 {
+        color: #333;
+    }
+    form {
+        margin-bottom: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="number"] {
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        width: 95%;
+    }
+    button {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #004494;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    #rankingImage {
+        display: none;
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+<script>
+function toggleImage() {
+    var image = document.getElementById('rankingImage');
+    if (image.style.display === 'none') {
+        image.style.display = 'block';
+    } else {
+        image.style.display = 'none';
+    }
+}
+</script>
+</head>
+<body>
+<h1>Query for player's information</h1>
+<form action="/player" method="get">
+    <label for="id">Player Name:</label>
+    <input type="text" id="id" name="id">
+    <button type="submit">Query</button>
+</form>
+
+<h2>Query for Top N Players by Minutes Played</h2>
+<form action="/top-players" method="get">
+    <label for="n">Number of Players (max 100):</label>
+    <input type="number" id="n" name="n" min="1" max="100" required>
+    <button type="submit">Query</button>
+</form>
+
+<h2>Query for Top N Scorers</h2>
+<form action="/top-scorers" method="get">
+    <label for="top_n">Number of Scorers (max 50):</label>
+    <input type="number" id="top_n" name="top_n" min="1" max="50" required>
+    <button type="submit">Query</button>
+</form>
+
+<button onclick="toggleImage()">Toggle Ranking Image</button>
+<img id="rankingImage" src="/static/topandbottomrankplayers.png" alt="Top and Bottom Rank Players">
+
+</body>
+</html>

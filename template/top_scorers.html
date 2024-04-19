@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Scorers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Top Scorers</h1>
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Total Goals</th>
+        </tr>
+        {% for scorer in scorers %}
+        <tr>
+            <td>{{ scorer.firstname }}</td>
+            <td>{{ scorer.lastname }}</td>
+            <td>{{ scorer.total_goals }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to Home</a>
+</body>
+</html>

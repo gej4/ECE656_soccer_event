@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Players by Minutes Played</title>
+</head>
+<body>
+    <h1>Top Players by Minutes Played</h1>
+    {% if results %}
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Total Minutes Played</th>
+        </tr>
+        {% for player in results %}
+        <tr>
+            <td>{{ player.firstname }}</td>
+            <td>{{ player.lastname }}</td>
+            <td>{{ player.total_minutes }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+</body>
+</html>
