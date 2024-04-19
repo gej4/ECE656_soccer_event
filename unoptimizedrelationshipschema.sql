@@ -134,16 +134,20 @@ CREATE TABLE TagNames (
 );
 
 CREATE TABLE Player_Ranks (
-    playerID INT PRIMARY KEY,
-    rankID INT,
+    playerID INT,
+    matchID INT,
+    PRIMARY KEY (playerID, matchID),
     score INT,
     minutesPlayed INT,
     role VARCHAR(255),
-    FOREIGN KEY (playerID) REFERENCES Players(ID)
+    FOREIGN KEY (playerID) REFERENCES Players(ID),
+    FOREIGN KEY (matchID) REFERENCES matches_England(ID)
 );
 
 CREATE TABLE Player_Games(
-    ID INT PRIMARY KEY,
+    playerID INT,
+    matchID INT,
+    PRIMARY KEY (playerID, matchID),
     firstName VARCHAR(255),
     lastName VARCHAR(255),
     birthDate DATE,
@@ -151,6 +155,8 @@ CREATE TABLE Player_Games(
     preferredFoot VARCHAR(50),
     height INT,
     minutesPlayed INT,
-    jerseyNumber INT
+    jerseyNumber INT,
+    FOREIGN KEY (playerID) REFERENCES Players(ID),
+    FOREIGN KEY (matchID) REFERENCES matches_England(ID)
 
-)
+);

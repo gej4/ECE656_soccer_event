@@ -120,12 +120,15 @@ CREATE TABLE TagNames (
 );
 
 CREATE TABLE Player_Ranks (
-    playerID INT PRIMARY KEY,
-    rankID INT,
+    playerID INT,
+    matchID INT,
+    PRIMARY KEY (playerID, matchID),
+
     score INT,
     minutesPlayed INT,
     role VARCHAR(255),
     FOREIGN KEY (playerID) REFERENCES Players(ID),
+    FOREIGN KEY (matchID) REFERENCES matches_England(ID)
     jerseyNumber INT
 );
 
